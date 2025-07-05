@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Online Image Compressor | Optimize JPEG, PNG, WEBP</title>
+    <meta name="description" content="Free, fast, and responsive online image compression tool. Reduce the file size of your JPEG, PNG, and WEBP images with adjustable quality settings. No uploads required, processing is done in your browser.">
+    <meta name="keywords" content="image compressor, image optimizer, compress image, reduce image size, photo compressor, jpeg compressor, png compressor, webp compressor, online tool, free image optimizer">
+    <meta name="Lakshya" content="ImagePress">
+    <link rel="canonical" href="https://your-website.com/">
+    <meta property="og:title" content="Online Image Compressor | Optimize Your Images">
+    <meta property="og:description" content="Easily compress your images online with our responsive and powerful tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/4A90E2/FFFFFF?text=Image+Compressor">
+    <meta property="og:url" content="https://your-website.com/">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google AdSense (Replace with your Publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind gray-50 */
+        }
+        .upload-area {
+            border: 2px dashed #d1d5db; /* Tailwind gray-300 */
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .upload-area.dragover {
+            background-color: #e0f2fe; /* Tailwind sky-100 */
+            border-color: #38bdf8; /* Tailwind sky-400 */
+        }
+        .loader {
+            border-top-color: #3b82f6; /* Tailwind blue-500 */
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Style for range slider thumb */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6; /* Tailwind blue-500 */
+            cursor: pointer;
+            border-radius: 50%;
+            margin-top: -6px;
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #3b82f6; /* Tailwind blue-500 */
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">ImagePress</h1>
+            <nav>
+                <a href="#" class="text-gray-600 hover:text-blue-600">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Powerful Online Image Compressor</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Reduce the file size of your images in seconds without compromising quality. Fast, free, and secure.</p>
+        </div>
+
+        <!-- Ad Space - Top Banner -->
+        <div class="my-8 text-center bg-gray-100 py-10 rounded-lg">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+
+        <!-- Compressor Tool -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-5xl mx-auto">
+            
+            <!-- File Input Area -->
+            <div id="uploadContainer">
+                <label for="imageInput" class="upload-area w-full p-10 text-center rounded-xl cursor-pointer block bg-gray-50 hover:bg-gray-100">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p class="mt-2 text-lg font-semibold text-blue-600">Click to upload or drag and drop</p>
+                    <p class="text-sm text-gray-500">Supports: JPG, PNG, WEBP</p>
+                </label>
+                <input type="file" id="imageInput" class="hidden" accept="image/jpeg, image/png, image/webp">
+            </div>
+
+            <!-- Main Tool Interface (hidden by default) -->
+            <div id="toolInterface" class="hidden">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Original Image -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-4">Original</h3>
+                        <div class="relative w-full h-80 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            <img id="originalImage" src="" alt="Original Image" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <p id="originalSize" class="mt-2 text-lg font-medium">Size: -</p>
+                    </div>
+
+                    <!-- Compressed Image -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-4">Compressed</h3>
+                        <div class="relative w-full h-80 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                             <div id="loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 hidden"></div>
+                            <canvas id="compressedCanvas" class="max-w-full max-h-full object-contain"></canvas>
+                        </div>
+                        <p id="compressedSize" class="mt-2 text-lg font-medium text-green-600">Size: -</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="mt-8">
+                    <label for="compressionLevel" class="block text-lg font-medium mb-2">Compression Level: <span id="compressionValue" class="font-bold text-blue-600">70%</span></label>
+                    <input type="range" id="compressionLevel" min="1" max="100" value="70" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button id="changeImageBtn" class="w-full sm:w-auto px-8 py-3 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition-colors">Change Image</button>
+                    <a id="downloadBtn" class="w-full sm:w-auto text-center px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors">Download Compressed Image</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ad Space - Mid-content -->
+        <div class="my-8 text-center bg-gray-100 py-10 rounded-lg">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_2"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+            <p>&copy; 2025 ImagePress. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DOM Element Selection ---
+        const imageInput = document.getElementById('imageInput');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const uploadArea = uploadContainer.querySelector('label');
+        const toolInterface = document.getElementById('toolInterface');
+        
+        const originalImage = document.getElementById('originalImage');
+        const originalSize = document.getElementById('originalSize');
+        
+        const compressedCanvas = document.getElementById('compressedCanvas');
+        const compressedSize = document.getElementById('compressedSize');
+        const loader = document.getElementById('loader');
+        
+        const compressionLevel = document.getElementById('compressionLevel');
+        const compressionValue = document.getElementById('compressionValue');
+        
+        const downloadBtn = document.getElementById('downloadBtn');
+        const changeImageBtn = document.getElementById('changeImageBtn');
+
+        let currentImageFile = null;
+        let originalImageDataURL = null;
+        
+        // --- Utility Functions ---
+        const formatBytes = (bytes, decimals = 2) => {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        };
+
+        const showInterface = (show) => {
+            uploadContainer.classList.toggle('hidden', show);
+            toolInterface.classList.toggle('hidden', !show);
+        };
+
+        // --- Core Compression Logic ---
+        const compressImage = () => {
+            if (!originalImageDataURL) return;
+
+            loader.classList.remove('hidden');
+            compressedCanvas.classList.add('hidden');
+            
+            const quality = parseInt(compressionLevel.value) / 100;
+            const image = new Image();
+            image.src = originalImageDataURL;
+
+            image.onload = () => {
+                const ctx = compressedCanvas.getContext('2d');
+                compressedCanvas.width = image.width;
+                compressedCanvas.height = image.height;
+                
+                // Draw image on canvas
+                ctx.clearRect(0, 0, compressedCanvas.width, compressedCanvas.height);
+                ctx.drawImage(image, 0, 0);
+
+                // Get compressed data URL
+                const mimeType = currentImageFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+                const compressedDataUrl = compressedCanvas.toDataURL(mimeType, quality);
+
+                // Update download link and size info
+                downloadBtn.href = compressedDataUrl;
+                downloadBtn.download = `compressed_${currentImageFile.name}`;
+                
+                // Calculate and display compressed size
+                const blob = dataURLtoBlob(compressedDataUrl);
+                compressedSize.textContent = `Size: ${formatBytes(blob.size)}`;
+                
+                loader.classList.add('hidden');
+                compressedCanvas.classList.remove('hidden');
+            };
+            image.onerror = () => {
+                 alert("Failed to load image for compression.");
+                 loader.classList.add('hidden');
+            }
+        };
+        
+        const dataURLtoBlob = (dataurl) => {
+            const arr = dataurl.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], { type: mime });
+        }
+
+        // --- Event Handlers ---
+        const handleFileSelect = (file) => {
+            if (!file || !file.type.startsWith('image/')) {
+                alert('Please select a valid image file (JPG, PNG, WEBP).');
+                return;
+            }
+            currentImageFile = file;
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                originalImageDataURL = e.target.result;
+                originalImage.src = originalImageDataURL;
+                originalSize.textContent = `Size: ${formatBytes(currentImageFile.size)}`;
+                showInterface(true);
+                compressImage(); // Initial compression
+            };
+            
+            reader.readAsDataURL(currentImageFile);
+        };
+
+        // --- Event Listeners ---
+        imageInput.addEventListener('change', (e) => handleFileSelect(e.target.files[0]));
+        
+        // Drag and Drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // Compression slider listener
+        compressionLevel.addEventListener('input', () => {
+            compressionValue.textContent = `${compressionLevel.value}%`;
+        });
+        // Use 'change' event to avoid re-compressing on every tiny slider move for better performance
+        compressionLevel.addEventListener('change', compressImage);
+
+        // Change Image button
+        changeImageBtn.addEventListener('click', () => {
+            showInterface(false);
+            // Reset state
+            imageInput.value = '';
+            currentImageFile = null;
+            originalImageDataURL = null;
+            originalImage.src = '';
+            originalSize.textContent = 'Size: -';
+            const ctx = compressedCanvas.getContext('2d');
+            ctx.clearRect(0, 0, compressedCanvas.width, compressedCanvas.height);
+            compressedSize.textContent = 'Size: -';
+            downloadBtn.href = '#';
+        });
+
+    </script>
+
+</body>
+</html>
