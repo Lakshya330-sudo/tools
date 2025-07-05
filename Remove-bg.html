@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free Background Remover | Remove BG from Images Online</title>
+    <meta name="description" content="Free online AI background remover. Instantly remove the background from any image to get a transparent background. Fast, easy, and no signup required.">
+    <meta name="keywords" content="background remover, remove background, transparent background, remove bg, photo background remover, image background remover, free background remover">
+    <meta name="author" content="ImagePress">
+    <link rel="canonical" href="https://your-website.com/background-remover">
+    <meta property="og:title" content="Free Background Remover | Remove BG from Images Online">
+    <meta property="og:description" content="Instantly remove the background from any image to get a transparent background with our free AI tool.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/F87171/FFFFFF?text=Background+Remover">
+    <meta property="og:url" content="https://your-website.com/background-remover">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google AdSense (Replace with your Publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --brand-red: #F87171; /* A soft red for this tool */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .upload-area {
+            border: 3px dashed #d1d5db;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .upload-area.dragover {
+            background-color: #fee2e2;
+            border-color: var(--brand-red);
+        }
+        .loader-wrapper {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        .loader {
+            border-top-color: var(--brand-red);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .result-bg {
+            background-image:
+                linear-gradient(45deg, #ccc 25%, transparent 25%),
+                linear-gradient(-45deg, #ccc 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ccc 75%),
+                linear-gradient(-45deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                 <a href="/" class="flex items-center gap-3 group">
+                    <svg class="h-9 w-9 text-[--brand-red]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15.4286V8.57143C21 7.02338 19.7909 5.71429 18.2143 5.71429H13.7143C12.9333 5.71429 12.2143 6.33333 12.2143 7.11429V16.8857C12.2143 17.6667 12.9333 18.2857 13.7143 18.2857H18.2143C19.7909 18.2857 21 17.0166 21 15.4286Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.2143 9.55237H7.5C4.98041 9.55237 3 11.5328 3 14.0524C3 16.572 4.98041 18.5524 7.5 18.5524H12.2143" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="text-2xl font-extrabold text-gray-800 group-hover:text-[--brand-red] transition-colors">ImagePress</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">AI Background Remover</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Automatically remove the background from your image in 5 seconds. Just upload and download.</p>
+        </div>
+
+        <!-- Ad Space - Top Banner -->
+        <div class="my-8 text-center bg-gray-100 py-10 rounded-lg">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_1"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+
+        <!-- Remover Tool -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-4xl mx-auto">
+            
+            <!-- File Input Area -->
+            <div id="uploadContainer">
+                <div id="uploadArea" class="upload-area w-full p-10 text-center rounded-xl bg-gray-50">
+                    <svg class="mx-auto h-16 w-16 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                    <p id="uploadHint" class="mt-4 text-lg font-semibold text-gray-700">Drag & Drop your image here</p>
+                    <p class="text-gray-500 my-2">or</p>
+                    <label for="imageInput" class="inline-block px-8 py-3 bg-[--brand-red] text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-all cursor-pointer">
+                        Select Image
+                    </label>
+                    <input type="file" id="imageInput" class="hidden" accept="image/jpeg, image/png, image/webp">
+                    <p class="text-sm text-gray-500 mt-4">Supports: JPG, PNG, WEBP</p>
+                </div>
+            </div>
+
+            <!-- Main Tool Interface (hidden by default) -->
+            <div id="toolInterface" class="hidden">
+                <div class="relative">
+                    <!-- Result Image -->
+                    <div class="text-center">
+                        <div class="relative w-full max-w-2xl mx-auto h-96 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border result-bg">
+                            <img id="resultImage" src="" alt="Image with background removed" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <p id="resultSize" class="mt-3 text-lg font-medium text-green-600">Processing complete!</p>
+                    </div>
+                    
+                    <!-- Loader Overlay -->
+                    <div id="loaderWrapper" class="loader-wrapper absolute inset-0 rounded-lg flex-col items-center justify-center hidden">
+                        <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24"></div>
+                        <p class="mt-4 text-xl font-semibold text-gray-700">Removing background...</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button id="resetBtn" class="w-full sm:w-auto px-8 py-3 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition-all">Remove Another</button>
+                    <a id="downloadBtn" class="w-full sm:w-auto text-center px-8 py-3 bg-[--brand-red] text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition-all">Download Image</a>
+                </div>
+            </div>
+            
+            <!-- Error Message Area -->
+            <div id="errorContainer" class="hidden mt-6 text-center">
+                <p class="text-red-600 bg-red-100 p-4 rounded-lg" id="errorMessage"></p>
+            </div>
+        </div>
+        
+        <!-- Ad Space - Mid-content -->
+        <div class="my-16 text-center bg-gray-100/50 py-10 rounded-lg border">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_2"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-400">
+            <p>&copy; 2025 ImagePress. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DOM Element Selection ---
+        const imageInput = document.getElementById('imageInput');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadHint = document.getElementById('uploadHint');
+        const toolInterface = document.getElementById('toolInterface');
+        
+        const resultImage = document.getElementById('resultImage');
+        const resultSize = document.getElementById('resultSize');
+        const loaderWrapper = document.getElementById('loaderWrapper');
+        
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        const errorContainer = document.getElementById('errorContainer');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // --- API Configuration ---
+        // IMPORTANT: Get your free API key from https://www.remove.bg/
+        const REMOVE_BG_API_KEY = 'CKxkgU45m7Gs3ikd6kmtpQKp';
+
+        // --- Utility Functions ---
+        const showInterface = (show) => {
+            uploadContainer.classList.toggle('hidden', show);
+            toolInterface.classList.toggle('hidden', !show);
+        };
+
+        const showError = (message) => {
+            errorMessage.textContent = message;
+            errorContainer.classList.remove('hidden');
+        };
+
+        const hideError = () => {
+            errorContainer.classList.add('hidden');
+        };
+
+        // --- Core Background Removal Logic ---
+        const removeBackground = (file) => {
+            if (REMOVE_BG_API_KEY === 'YOUR_API_KEY_HERE') {
+                showError('API Key is not configured. Please add your remove.bg API key in the script.');
+                showInterface(false); // Go back to upload screen
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('image_file', file);
+            formData.append('size', 'auto');
+
+            fetch('https://api.remove.bg/v1.0/removebg', {
+                method: 'POST',
+                headers: {
+                    'X-Api-Key': REMOVE_BG_API_KEY,
+                },
+                body: formData,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => {
+                        const errorMsg = err.errors && err.errors[0] ? err.errors[0].title : 'An unknown error occurred.';
+                        throw new Error(errorMsg);
+                    });
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                resultImage.src = url;
+                downloadBtn.href = url;
+                downloadBtn.download = `background-removed-${file.name.split('.')[0]}.png`;
+                loaderWrapper.classList.add('hidden');
+            })
+            .catch(error => {
+                showError(`Error: ${error.message}`);
+                loaderWrapper.classList.add('hidden');
+                // Optional: reset to upload screen on error
+                setTimeout(() => {
+                    showInterface(false);
+                    hideError();
+                }, 4000);
+            });
+        };
+
+        // --- Event Handlers ---
+        const handleFileSelect = (file) => {
+            if (!file || !file.type.startsWith('image/')) {
+                alert('Please select a valid image file (JPG, PNG, WEBP).');
+                return;
+            }
+            hideError();
+            showInterface(true);
+            loaderWrapper.classList.remove('hidden');
+            resultImage.src = ''; // Clear previous result
+            removeBackground(file);
+        };
+
+        // --- Event Listeners ---
+        imageInput.addEventListener('change', (e) => handleFileSelect(e.target.files[0]));
+        
+        // Drag and Drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+            uploadHint.textContent = "Drop your image to upload";
+        });
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            uploadHint.textContent = "Drag & Drop your image here";
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            uploadHint.textContent = "Drag & Drop your image here";
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // Reset button
+        resetBtn.addEventListener('click', () => {
+            showInterface(false);
+            imageInput.value = '';
+            resultImage.src = '';
+            downloadBtn.href = '#';
+            hideError();
+        });
+
+    </script>
+
+</body>
+</html>
