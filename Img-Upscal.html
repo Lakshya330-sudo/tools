@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>AI Image Upscaler | Enlarge & Enhance Images Free Online</title>
+    <meta name="description" content="Free online AI Image Upscaler. Enlarge and enhance your images by 2x or 4x without losing quality. Perfect for increasing the resolution of photos, drawings, and digital art.">
+    <meta name="keywords" content="image upscaler, ai upscaler, photo enlarger, increase image resolution, enhance image, 4k upscaler, free image upscaler, online tool">
+    <meta name="author" content="ImagePress">
+    <link rel="canonical" href="https://your-website.com/image-upscaler">
+    <meta property="og:title" content="AI Image Upscaler | Enlarge & Enhance Images Free Online">
+    <meta property="og:description" content="Free online AI Image Upscaler. Enlarge and enhance your images by 2x or 4x without losing quality.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/8B5CF6/FFFFFF?text=AI+Image+Upscaler">
+    <meta property="og:url" content="https://your-website.com/image-upscaler">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google AdSense (Replace with your Publisher ID) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+
+    <style>
+        :root {
+            --brand-purple: #8B5CF6;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .upload-area {
+            border: 3px dashed #d1d5db;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .upload-area.dragover {
+            background-color: #ede9fe;
+            border-color: var(--brand-purple);
+        }
+        .loader {
+            border-top-color: var(--brand-purple);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Style for range slider */
+        input[type=range] {
+            -webkit-appearance: none; appearance: none;
+            width: 100%; height: 8px;
+            background: #e5e7eb; border-radius: 5px;
+            outline: none; opacity: 0.7;
+            transition: opacity .2s;
+        }
+        input[type=range]:hover { opacity: 1; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 24px; height: 24px;
+            background: var(--brand-purple); cursor: pointer;
+            border-radius: 50%; border: 4px solid #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 24px; height: 24px;
+            background: var(--brand-purple); cursor: pointer;
+            border-radius: 50%; border: 4px solid #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        /* For sharp pixelated upscaling */
+        #upscaledCanvas {
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        /* Custom styles for scale factor buttons */
+        .scale-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .scale-btn.active {
+            background-color: var(--brand-purple);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                 <a href="/" class="flex items-center gap-3 group">
+                    <svg class="h-9 w-9 text-[--brand-purple]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15.4286V8.57143C21 7.02338 19.7909 5.71429 18.2143 5.71429H13.7143C12.9333 5.71429 12.2143 6.33333 12.2143 7.11429V16.8857C12.2143 17.6667 12.9333 18.2857 13.7143 18.2857H18.2143C19.7909 18.2857 21 17.0166 21 15.4286Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.2143 9.55237H7.5C4.98041 9.55237 3 11.5328 3 14.0524C3 16.572 4.98041 18.5524 7.5 18.5524H12.2143" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span class="text-2xl font-extrabold text-gray-800 group-hover:text-[--brand-purple] transition-colors">ImagePress</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">AI Image Upscaler</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Increase the resolution of your images by 2x or 4x. Perfect for enhancing photos, icons, and digital art.</p>
+        </div>
+
+        <!-- Ad Space - Top Banner -->
+        <div class="my-8 text-center bg-gray-100 py-10 rounded-lg">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_1"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+
+        <!-- Upscaler Tool -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl w-full max-w-6xl mx-auto">
+            
+            <!-- File Input Area -->
+            <div id="uploadContainer">
+                <div id="uploadArea" class="upload-area w-full p-10 text-center rounded-xl bg-gray-50">
+                    <svg class="mx-auto h-16 w-16 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l-3.75 3.75M12 9.75l3.75 3.75M3 17.25V6.75A2.25 2.25 0 015.25 4.5h13.5A2.25 2.25 0 0121 6.75v10.5A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25z" /></svg>
+                    <p id="uploadHint" class="mt-4 text-lg font-semibold text-gray-700">Drag & Drop your image here</p>
+                    <p class="text-gray-500 my-2">or</p>
+                    <label for="imageInput" class="inline-block px-8 py-3 bg-[--brand-purple] text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all cursor-pointer">
+                        Select Image
+                    </label>
+                    <input type="file" id="imageInput" class="hidden" accept="image/jpeg, image/png, image/webp">
+                    <p class="text-sm text-gray-500 mt-4">Supports: JPG, PNG, WEBP</p>
+                </div>
+            </div>
+
+            <!-- Main Tool Interface (hidden by default) -->
+            <div id="toolInterface" class="hidden">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Original Image -->
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Original</h3>
+                        <div class="relative w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border">
+                            <img id="originalImage" src="" alt="Original Image" class="max-w-full max-h-full object-contain">
+                        </div>
+                        <p id="originalSize" class="mt-3 text-lg font-medium">Size: -</p>
+                    </div>
+
+                    <!-- Upscaled Image -->
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Upscaled</h3>
+                        <div class="relative w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border">
+                             <div id="loader" class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 hidden"></div>
+                            <canvas id="upscaledCanvas" class="max-w-full max-h-full object-contain"></canvas>
+                        </div>
+                        <p id="upscaledSize" class="mt-3 text-lg font-medium text-green-600">Size: -</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="mt-10 grid md:grid-cols-2 gap-8 items-center">
+                    <!-- ENHANCED Scale Factor Buttons -->
+                    <div>
+                        <label class="block text-xl font-medium mb-3 text-center md:text-left">Scale Factor</label>
+                        <div class="flex justify-center md:justify-start bg-gray-200 rounded-lg p-1" id="scaleControls">
+                            <button data-scale="2" class="scale-btn active w-1/2 py-2 px-4 text-lg font-semibold rounded-md">2x</button>
+                            <button data-scale="4" class="scale-btn w-1/2 py-2 px-4 text-lg font-semibold rounded-md">4x</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="qualityLevel" class="block text-xl font-medium mb-3 text-center md:text-left">Output Quality: <span id="qualityValue" class="font-bold text-[--brand-purple]">92%</span></label>
+                        <input type="range" id="qualityLevel" min="1" max="100" value="92">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button id="resetBtn" class="w-full sm:w-auto px-8 py-3 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition-all">Upscale Another</button>
+                    <a id="downloadBtn" class="w-full sm:w-auto text-center px-8 py-3 bg-[--brand-purple] text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 transition-all">Download Upscaled Image</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ad Space - Mid-content -->
+        <div class="my-16 text-center bg-gray-100/50 py-10 rounded-lg border">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_2"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            <span class="text-sm text-gray-400 mt-2 block">Advertisement</span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-400">
+            <p>&copy; 2025 ImagePress. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DOM Element Selection ---
+        const imageInput = document.getElementById('imageInput');
+        const uploadContainer = document.getElementById('uploadContainer');
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadHint = document.getElementById('uploadHint');
+        const toolInterface = document.getElementById('toolInterface');
+        
+        const originalImage = document.getElementById('originalImage');
+        const originalSize = document.getElementById('originalSize');
+        
+        const upscaledCanvas = document.getElementById('upscaledCanvas');
+        const upscaledSize = document.getElementById('upscaledSize');
+        const loader = document.getElementById('loader');
+        
+        const scaleControls = document.getElementById('scaleControls');
+        const qualityLevel = document.getElementById('qualityLevel');
+        const qualityValue = document.getElementById('qualityValue');
+        
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        let currentImageFile = null;
+        let originalImageDataURL = null;
+        let currentScaleFactor = 2; // Default scale factor
+        
+        // --- Utility Functions ---
+        const formatBytes = (bytes, decimals = 2) => {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        };
+
+        const showInterface = (show) => {
+            uploadContainer.classList.toggle('hidden', show);
+            toolInterface.classList.toggle('hidden', !show);
+        };
+
+        // --- Core Upscaling Logic ---
+        const upscaleImage = () => {
+            if (!originalImageDataURL) return;
+
+            loader.classList.remove('hidden');
+            upscaledCanvas.classList.add('hidden');
+            
+            const quality = parseInt(qualityLevel.value) / 100;
+            
+            const image = new Image();
+            image.src = originalImageDataURL;
+
+            image.onload = () => {
+                const newWidth = image.width * currentScaleFactor;
+                const newHeight = image.height * currentScaleFactor;
+
+                const ctx = upscaledCanvas.getContext('2d');
+                upscaledCanvas.width = newWidth;
+                upscaledCanvas.height = newHeight;
+                
+                ctx.imageSmoothingEnabled = false;
+                
+                ctx.drawImage(image, 0, 0, newWidth, newHeight);
+
+                const mimeType = currentImageFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+                const upscaledDataUrl = upscaledCanvas.toDataURL(mimeType, quality);
+
+                downloadBtn.href = upscaledDataUrl;
+                downloadBtn.download = `upscaled_${currentScaleFactor}x_${currentImageFile.name}`;
+                
+                const blob = dataURLtoBlob(upscaledDataUrl);
+                upscaledSize.textContent = `Size: ${formatBytes(blob.size)} (${newWidth}x${newHeight}px)`;
+                
+                loader.classList.add('hidden');
+                upscaledCanvas.classList.remove('hidden');
+            };
+            image.onerror = () => {
+                 alert("Failed to load image for upscaling.");
+                 loader.classList.add('hidden');
+            }
+        };
+        
+        const dataURLtoBlob = (dataurl) => {
+            const arr = dataurl.split(',');
+            const mime = arr[0].match(/:(.*?);/)[1];
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], { type: mime });
+        }
+
+        // --- Event Handlers ---
+        const handleFileSelect = (file) => {
+            if (!file || !file.type.startsWith('image/')) {
+                alert('Please select a valid image file (JPG, PNG, WEBP).');
+                return;
+            }
+            currentImageFile = file;
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                originalImageDataURL = e.target.result;
+                const tempImg = new Image();
+                tempImg.src = originalImageDataURL;
+                tempImg.onload = () => {
+                    originalImage.src = originalImageDataURL;
+                    originalSize.textContent = `Size: ${formatBytes(currentImageFile.size)} (${tempImg.width}x${tempImg.height}px)`;
+                    showInterface(true);
+                    upscaleImage(); // Initial upscale
+                }
+            };
+            
+            reader.readAsDataURL(currentImageFile);
+        };
+
+        // --- Event Listeners ---
+        imageInput.addEventListener('change', (e) => handleFileSelect(e.target.files[0]));
+        
+        // Drag and Drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+            uploadHint.textContent = "Drop your image to upload";
+        });
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            uploadHint.textContent = "Drag & Drop your image here";
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            uploadHint.textContent = "Drag & Drop your image here";
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // Controls listeners
+        qualityLevel.addEventListener('input', () => {
+            qualityValue.textContent = `${qualityLevel.value}%`;
+        });
+        qualityLevel.addEventListener('change', upscaleImage);
+        
+        // NEW: Event listener for scale factor buttons
+        scaleControls.addEventListener('click', (e) => {
+            const clickedButton = e.target.closest('button');
+            if (!clickedButton) return;
+
+            // Remove active class from all buttons
+            scaleControls.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            // Add active class to the clicked button
+            clickedButton.classList.add('active');
+            
+            // Update the scale factor and re-process the image
+            currentScaleFactor = parseInt(clickedButton.dataset.scale);
+            upscaleImage();
+        });
+
+        // Reset button
+        resetBtn.addEventListener('click', () => {
+            showInterface(false);
+            imageInput.value = '';
+            currentImageFile = null;
+            originalImageDataURL = null;
+            originalImage.src = '';
+            originalSize.textContent = 'Size: -';
+            const ctx = upscaledCanvas.getContext('2d');
+            ctx.clearRect(0, 0, upscaledCanvas.width, upscaledCanvas.height);
+            upscaledSize.textContent = 'Size: -';
+            downloadBtn.href = '#';
+        });
+
+    </script>
+
+</body>
+</html>
